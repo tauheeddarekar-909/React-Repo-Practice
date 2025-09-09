@@ -106,11 +106,11 @@ function App() {
     call1()  // Hoisted to top along with definition and declaration i.e name and body
     call2()  // const call2 is hoisted but not initialized. It's in the Temporal Dead Zone (TDZ) until the assignment is reached.
 
-    const call2 = () => {
+    const call2 = () => {   // Hoisted but not initialized so it will give a reference error
       console.log("call2")
     }
 
-    function call1() {
+    function call1() {     // Hoisted and initialized so it won't give a reference error
       console.log("call1")
     }
   }

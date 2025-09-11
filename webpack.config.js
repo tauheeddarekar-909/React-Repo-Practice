@@ -22,17 +22,34 @@ export default {
   resolve: {
     extensions: ['.js', '.jsx'],
   },
-module: {
+  module: {
     rules: [
+      // ✅ Single CSS rule with PostCSS
       {
-        test: /\.(js|jsx)$/,
+        test: /\.css$/i,
+        exclude: /node_modules/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                config: path.resolve(__dirname, 'postcss.config.js'),
+              },
+            },
+          },
+        ],
+      },
+
+      // ✅ JS/JSX rule (only one needed)
+      {
+        test: /\.(js|jsx)$/i,
         exclude: /node_modules/,
         use: 'babel-loader',
       },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-      },
+
+      // ✅ Handle images
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
         type: 'asset/resource',
@@ -41,7 +58,7 @@ module: {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './index.html',
+      template: './public/index.html',
     }),
   ],
 };

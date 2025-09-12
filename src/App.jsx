@@ -3,12 +3,13 @@ import './App.css'
 import React from 'react'
 import PR1_DAY1 from './DailyTasks/PR1_DAY1'
 import PR2_DAY2 from './DailyTasks/PR2_DAY2'
+import PR3_DAY3 from './DailyTasks/PR3_DAY3/PR3_DAY3'
+import PR4_DAY4 from './DailyTasks/PR4_DAY4/PR4_DAY4'
 
 function App() {
 
-  const [tab, setTab] = useState("PR2_DAY2")
+  const [tab, setTab] = useState("PR5_DAY5")
 
-  // Helper to determine button classes
   const getButtonClass = (buttonTab) => {
     return tab === buttonTab ? 'bg-blue-900 p-4 text-white' : 'bg-blue-500 p-4 text-white';
   };
@@ -28,8 +29,12 @@ function App() {
         <button onClick={() => setTab("PR10_DAY10")} className={getButtonClass("PR10_DAY10")}>Day 10 Task</button>
       </div>
 
-      {tab === "PR1_DAY1" ? <PR1_DAY1 /> :
-       tab === "PR2_DAY2" ? <PR2_DAY2 /> : null}
+      {
+        tab === "PR1_DAY1" ? <PR1_DAY1 /> :
+        tab === "PR2_DAY2" ? <PR2_DAY2 /> :
+        tab === "PR3_DAY3" ? <PR3_DAY3/>:
+        tab === "PR4_DAY4" ? <PR4_DAY4/>: null
+       }
     </>
   )
 }

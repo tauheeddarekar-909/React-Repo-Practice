@@ -133,11 +133,21 @@ function PR1_DAY1() {
 
                 <>
                     <h2 className='text-center'>Output</h2>
-                    {output.map((out, idx) => (
-                        <div key={idx} className='flex flex-col'>
-                            {out}
+                    <div className='flex flex-col justify-center mt-5'>
+                        <div className='flex flex-row justify-center gap-7'>
+                            <h2 className='text-center mb-2 font-extrabold text-3xl text-blue-900 '>Console</h2>
+                            <button
+                                onClick={() => { setOutput([]) }}
+                                className='rounded-2xl text-white p-1 bg-blue-500'>Clear console</button>
                         </div>
-                    ))}
+                        <div className='border mt-3 border-black bg-blue-900 h-[250px] p-4 min-w-[800px] overflow-y-auto rounded-2xl self-center'>
+                            {output.map((log, index) => (
+                                <div key={index} className="text-white text-left mb-1">
+                                    {log}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </>
             </div>
         </>

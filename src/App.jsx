@@ -10,7 +10,7 @@ import PR6_DAY6 from './DailyTasks/PR6_DAY6/PR6_DAY6'
 
 function App() {
 
-  const [tab, setTab] = useState("PR6_DAY6")
+  const [tab, setTab] = useState("PR5_DAY5")
 
   const getButtonClass = (buttonTab) => {
     return tab === buttonTab ? 'bg-blue-900 p-4 text-white' : 'bg-blue-500 p-4 text-white';

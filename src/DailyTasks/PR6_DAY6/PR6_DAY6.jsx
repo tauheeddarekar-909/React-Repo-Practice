@@ -7,6 +7,8 @@ function PR6_DAY6() {
 
     const darkMode = useSelector((state) => state.theme.darkMode)
 
+
+
     return (
         <>
             <ThemeSwitchRedux />

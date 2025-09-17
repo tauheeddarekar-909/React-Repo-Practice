@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import useWindowSize from './components/useWindowSize'
+import { useDispatch, useSelector } from 'react-redux'
+import { addTodo } from './components/todoSlice'
 
 function PR5_DAY5() {
 
@@ -8,6 +10,10 @@ function PR5_DAY5() {
         description: '',
         status: ''
     })
+
+    const dispatch = useDispatch()
+    const todoState = useSelector((state)=>state.todo.todos)
+    console.log("todoState", todoState)
 
     const [todos, setTodos] = useState([])
 
@@ -25,8 +31,6 @@ function PR5_DAY5() {
         "ToDo"
     ]
 
-    console.log("form here", form)
-
     const handleSubmit = () => {
         setTodos((prev) => [
             ...prev,
@@ -43,17 +47,17 @@ function PR5_DAY5() {
 
     const size = useWindowSize()
 
-    console.log("size 46", size)
 
-    useEffect(()=>{
-        const handler = setInterval(()=>{
-            setTimer(new Date())
-        }, 1000)
+    // useEffect(()=>{
+    //     const handler = setInterval(()=>{
+    //         setTimer(new Date())
+    //     }, 1000)
 
-        return () =>{
-            clearInterval(handler)
-        }
-    }, [])
+    //     return () =>{
+    //         clearInterval(handler)
+    //     }
+    // }, [])
+    
 
     return (
         <div>
@@ -94,7 +98,12 @@ function PR5_DAY5() {
                         </div>
 
                     </div>
-                    <button onClick={handleSubmit} className='bg-blue-900 p-3 text-white mt-4 rounded-3xl'>Add ToDo</button>
+                    <button onClick={()=>dispatch(addTodo({
+                        id: Date.now(),
+                        name: form.name,
+                        description: form.description,
+                        status: form.status
+                    }))} className='bg-blue-900 p-3 text-white mt-4 rounded-3xl'>Add ToDo</button>
 
                     <table className='border border-black mt-3 '>
                         <thead>
@@ -106,7 +115,7 @@ function PR5_DAY5() {
                             </tr>
                         </thead>
                         <tbody>
-                            {todos.map((todo, index) => (
+                            {todoState.map((todo, index) => (
                                 <tr key={index}>
                                     <td className='p-2 border border-black'>{todo.id}</td>
                                     <td className='p-2 border border-black'>{todo.name}</td>
